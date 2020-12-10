@@ -5,9 +5,9 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin'); // Require vue-loader-
 module.exports = {
     entry: path.resolve(__dirname) + "/src/main.js", // webpack entry point. Module to start building dependency graph
     output: {
-        path: path.resolve(__dirname) + '/dist', // Folder to store generated bundle
-        filename: 'bundle.js',  // Name of generated bundle after build
-        publicPath: '/' // public URL of the output directory when referenced in a browser
+        path: path.resolve(__dirname) + '/dist/', // Folder to store generated bundle
+        filename: '[name].bundle.js',  // Name of generated bundle after build
+        publicPath: '/Simon-The-Game/' // public URL of the output directory when referenced in a browser
     },
     module: {  // where we defined file patterns and their loaders
         rules: [
@@ -59,6 +59,7 @@ module.exports = {
     plugins: [  // Array of plugins to apply to build chunk
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
+            filename: "index.html",
             template: path.resolve(__dirname) + "/src/public/index.html",
             inject: 'body'
         }),
@@ -68,5 +69,6 @@ module.exports = {
         port: 8000, // port to run dev-server
         overlay: true,
         open: true,
-    }
+    },
+    mode: "production"
 };
